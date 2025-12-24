@@ -1,0 +1,210 @@
+<!-- Viseven TASK3 by Vadym Sobolevskyi -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 4</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <article id="main" class="main">
+        <h2>&nbsp;</h2>
+        <header>
+            WELCOME TO VISEVEN <span>IMAGESTOCK</span>
+        </header>
+        <section class=image-container>
+            <h2>&nbsp;</h2>
+            <figure class="add-item">
+                <form enctype="multipart/form-data" @click.once="addPictureAlert">
+                    <input id="add-file" type="file" name="picture" accept=".jpg, .jpeg, .png"
+                        @change="handleFiles"/>
+                    <label for="add-file">
+                        <div class="add-picture">
+                            <img src="./img/add_picture2.png" alt="add picture">
+                            <div class="add-picture-text">
+                                Add your Picture
+                            </div>
+                        </div>
+                    </label>
+                </form>
+            </figure>
+
+            <figure v-for="i in imagesData" v-bind:id="i.id" :key="i.id" class="image-item"
+                v-bind:style="{ gridArea: imgRow1[i.id] +'/'+ imgCol1[i.id] +'/'+ imgRow2[i.id] +'/'+ imgCol2[i.id] }"
+                v-on:click="displayPopup(i.id)">
+                <img v-bind:src="i.src" alt="">
+                <figcaption>
+                    <div class="image-comment"><img src="./img/comment_icon.png" alt="comments"><span class="image-comment-count"
+                            id="image-comment-count">{{ i.comments.length }}</span></div>
+                    <div class="image-like"><img src="./img/like_icon.png" alt="likes"><span
+                            class="image-like-count">{{ i.likes }}</span></div>
+                    <div class="image-dislike"><img src="./img/dislike_icon.png" alt="dislikes"><span
+                            class="image-dislike-count">{{ i.dislikes }}</span></div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <article class="overlay" v-bind:style="{ visibility: popupVisibility, opacity: popupOpacity }">
+            <h2>&nbsp;</h2>
+            <section id="popup" class="popup">
+                <h2>&nbsp;</h2>
+                <header>
+                    WELCOME TO VISEVEN <span>IMAGESTOCK</span>
+                </header>
+                <figure id="popup-image" class="popup-image">
+                    <img :src="imagesData[popupImageId].src" alt="image">
+                    <figcaption></figcaption>
+                    <div class="like-button" v-on:click="plusLike">
+                        <img src="./img/like_icon.png" alt="like">
+                        <span id="popupLikesCount">{{ popupLikesCount }}</span>
+                        <div class="like-button-underline"></div>
+                    </div>
+                    <div class="dislike-button" v-on:click="plusDislike">
+                        <img src="./img/dislike_icon.png" alt="dislike">
+                        <span id="popupDislikesCount">{{ popupDislikesCount }}</span>
+                    </div>
+                </figure>
+                <a class="close" href="#" v-on:click="closePopup"><img src="./img/close_icon.png" alt="close"></a>
+                <article class="content">
+                    <h2>&nbsp;</h2>
+                    <header>Comments: <span id="popupCommentsCount">{{ popupCommentsCount }}</span></header>
+                    <section class="comments">
+                        <h2>&nbsp;</h2>
+                        <article v-for="cmt in imagesData[popupImageId].comments" class="comment">
+                            <header>
+                                <div class="author">{{ cmt[0] }}</div>
+                                <div class="date">{{ cmt[1] }}</div>
+                            </header>
+                            <section class="text">{{ cmt[2] }}
+                                <h2>&nbsp;</h2>
+                            </section>
+                        </article>
+                    </section>
+                    <footer>
+                        <div class="new-comment-divider"></div>
+                        <form enctype="multipart/form-data">
+                            <input id="nickname" name="nickname" type="text" v-model="commentAuthor"
+                                placeholder="Type your nickname here...">
+                            <textarea id="comment" name="comment" v-model="commentText"
+                                placeholder="Write your comment here..." rows="2" cols="30"></textarea>
+                            <div @click="addComment(commentAuthor, getCurrentTime(), commentText)" id="submit"><img
+                                    src="./img/send_btn.png" alt="submit"></div>
+                        </form>
+                    </footer>
+                </article>
+            </section>
+        </article>
+    </article>
+
+    <script>
+        var appVue = new Vue({
+            el: '#main',
+            data: {
+                imgRow1: '321231123321231123',
+                imgCol1: '111223444555667888',
+                imgRow2: '432343234432343234',
+                imgCol2: '223344555667788999',
+                imageCount: 8,
+                templateIndex: 8,
+                pageCount: 1,
+                nextImageId: 1,
+                popupImageId: 0,
+                popupCommentsCount: 0,
+                popupLikesCount: 0,
+                popupDislikesCount: 0,
+                popupVisibility: "hidden",
+                popupOpacity: "0",
+                commentAuthor: '',
+                commentText: '',
+                imagesData: [
+                    { id: 0, name: "image" + 0 + ".jpg", src: "./gallery/image" + 0 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 1, name: "image" + 1 + ".jpg", src: "./gallery/image" + 1 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 2, name: "image" + 2 + ".jpg", src: "./gallery/image" + 2 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 3, name: "image" + 3 + ".jpg", src: "./gallery/image" + 3 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 4, name: "image" + 4 + ".jpg", src: "./gallery/image" + 4 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 5, name: "image" + 5 + ".jpg", src: "./gallery/image" + 5 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 6, name: "image" + 6 + ".jpg", src: "./gallery/image" + 6 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                    { id: 7, name: "image" + 7 + ".jpg", src: "./gallery/image" + 7 + ".jpg", likes: 0, dislikes: 0, comments: [] },
+                ]
+            },
+            methods: {
+                plusLike: function () {
+                    this.popupLikesCount++;
+                    this.imagesData[this.popupImageId].likes = this.popupLikesCount;
+                },
+                plusDislike: function () {
+                    this.popupDislikesCount++;
+                    this.imagesData[this.popupImageId].dislikes = this.popupDislikesCount;
+                },
+                getCurrentTime: function () {
+                    let currentdate = new Date();
+                    let commentTime = currentdate.getDate() + "/"
+                        + (currentdate.getMonth() + 1) + "/"
+                        + currentdate.getFullYear() + " "
+                        + currentdate.getHours() + ":"
+                        + (currentdate.getMinutes() < 10 ? '0' : '' + currentdate.getMinutes());
+                    return commentTime;
+                },
+                addComment: function (commentNic, commentTime, commentText) {
+                    this.popupCommentsCount++;
+                    this.imagesData[this.popupImageId].comments.unshift([commentNic, commentTime, commentText]);
+                },
+                displayPopup: function (imgId) {
+                    this.popupImageId = imgId;
+                    this.popupCommentsCount = this.imagesData[this.popupImageId].comments.length;
+                    this.popupLikesCount = this.imagesData[this.popupImageId].likes;
+                    this.popupDislikesCount = this.imagesData[this.popupImageId].dislikes;
+                    this.popupVisibility = "visible";
+                    this.popupOpacity = "1";
+                },
+                closePopup: function () {
+                    this.popupVisibility = "hidden";
+                    this.popupOpacity = "0";
+                },
+                addPictureAlert: function () {
+                    alert('To add a picture to Imagestock place .jpg, .jpeg or .png image to the "./galery" folder of this task first. Only images present in the "./gallery" folder can be added to the Imagestock');
+                },
+                handleFiles: function () {       
+                    let fileName = document.getElementById("add-file").files[0].name;
+                    let newImageId = this.imagesData.length;
+                    let newImage = {
+                        id: newImageId,
+                        name: fileName,
+                        src: "./gallery/" + fileName,
+                        likes: 0,
+                        dislikes: 0,
+                        comments: []
+                    }
+                    this.imagesData.push(newImage);
+
+                    let addItem = document.querySelector(".add-item");
+                    addItem.style.gridArea = this.imgRow1[this.templateIndex + 1] + ' / '
+                        + String(Number(this.imgCol1[this.templateIndex + 1]) + (4 * (this.pageCount - 1))) + ' / '
+                        + this.imgRow2[this.templateIndex + 1] + ' / '
+                        + String(Number(this.imgCol2[this.templateIndex + 1]) + (4 * (this.pageCount - 1)));
+
+                    let gridWidth = this.pageCount * 5;
+                    document.querySelector(".image-container").style.gridTemplateColumns = 'repeat(' + gridWidth + ', 236px)';
+
+                    this.imageCount++;
+                    this.nextImageId++;
+
+                    if (this.templateIndex < 8) {
+                        this.templateIndex++;
+                    }
+                    else {
+                        this.templateIndex = 0;
+                        this.pageCount = this.pageCount + 1;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

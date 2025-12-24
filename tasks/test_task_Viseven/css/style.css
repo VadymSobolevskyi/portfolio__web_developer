@@ -1,0 +1,376 @@
+@import 'normalize.css';
+
+/* Roboto bold */
+
+@font-face {
+    font-family: "Roboto";
+    src: url('./fonts/Roboto-Bold.eot');
+    src: url('./fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/Roboto-Bold.woff2') format('woff2'),
+         url('./fonts/Roboto-Bold.woff') format('woff'),
+         url('./fonts/Roboto-Bold.ttf') format('truetype');
+/*     font-weight: 700;
+ */    font-weight: bold;
+    font-style: normal;
+}
+
+/* Roboto medium */
+/*
+@font-face {
+    font-family: "Roboto";
+    src: url('/fonts/Roboto-Medium.eot');
+    src: url('/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Roboto-Medium.woff2') format('woff2'),
+         url('/fonts/Roboto-Medium.woff') format('woff'),
+         url('/fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+*/
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    background: #E5E5E5;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.mainPage {
+    width: 1445px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 90px;
+    background: #ffffff;
+}
+
+.topNavigation {
+    width: 1445px;
+    height: 90px;
+    position: fixed;
+    top: 0px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.menu {
+    width: 940px;
+    height: 90px;
+    margin: 0 auto;
+    margin-top: 0px;
+}
+
+.menuItem {
+    width: 90px;
+    height: 30px;
+    margin-top: 40px;
+    margin-left: 127px;
+    margin-right: 0px;
+    padding: 0px;
+    font-size: 18px;
+    color: #828282;
+    text-decoration: none;
+    float: left;
+/*     transition: all 0.2s ease 0s;
+ */    cursor: pointer;
+}
+
+.menuItem:hover {
+    color: #070707;
+}
+
+.menuItemSelected {
+    color: #070707;
+}
+
+.navLine {
+    width: 938px;
+    margin: 0 auto;
+    position: relative;
+    top: 88px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    border: 1px solid #828282;
+}
+
+.header {
+    width: 940px;
+    margin-top: 0px;
+    margin: 0 auto;
+}
+
+.headerName {
+    width: 320px;
+    height: 120px;
+    margin-top: 35px;
+    font-size: 47px;
+    line-height: 55px;
+    color: #070707;
+    float: left;
+}
+
+.headerDescription {
+    width: 250px;
+    height: 44px;
+    margin-top: 90px;
+    margin-left: 100px;
+    font-size: 18px;
+    color: #070707;
+    float: left;
+}
+
+.headerImage {
+    width: 940px;
+    height: 400px;
+    margin-top: 35px;
+    margin-bottom: 88px;
+}
+
+.aboutMe {
+    width: 1445px;
+    height: 416px;
+    padding-top: 90px;
+    background: #F6F6F6;
+}
+
+.aboutMeHeader {
+    width: 160px;
+    height: 44px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 34px;
+    line-height: 40px;
+    color: #070707;
+}
+
+.aboutMeText {
+    width: 600px;
+    height: 220px;
+    margin: 0 auto;
+    margin-top: 48px;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #070707;
+}
+
+.skills {
+    width: 1445px;
+    padding-top: 90px;
+    background: #FFFFFF;
+    text-align: center;
+    font-size: 0;
+}
+
+.skillsHeader {
+    width: 160px;
+    height: 44px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 34px;
+    line-height: 40px;
+    color: #070707;
+}
+
+.skillsText {
+    width: 240px;
+    height: 24px;
+    margin: 0 auto;
+    margin-top: 48px;
+    font-size: 18px;
+    text-align: center;
+    color: #070707;
+}
+
+.skillDescription {
+    width: 259px;
+    margin-top: 88px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.skillIcon {
+    width: 92px;
+    height: 88px;
+    margin: 0 auto;
+    background: radial-gradient(63.38px at 32.94% 22.44%, rgba(52, 54, 78, 0.98) 0%, #0C0824 100%);
+    background-size: 85px 81px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.skillIconFigma1 {
+    width: 29.74px;
+    height: 29.63px;
+    background: #F24E1E;
+    border-radius: 50% 0% 0% 50%;
+    float: left;
+}
+
+.skillIconFigma2 {
+    width: 29.74px;
+    height: 29.63px;
+    background: #FF7262;
+    border-radius: 0% 50% 50% 0%;
+    float: left;
+}
+
+.skillIconFigma3 {
+    width: 29.74px;
+    height: 29.63px;
+    background: #A259FF;
+    border-radius: 50% 0% 0% 50%;
+    float: left;
+}
+
+.skillIconFigma4 {
+    width: 29.74px;
+    height: 29.63px;
+    background: #1ABCFE;
+    border-radius: 50% 50% 50% 50%;
+    float: left;
+}
+
+.skillIconFigma5 {
+    width: 29.74px;
+    height: 29.63px;
+    background: #0ACF83;
+    border-radius: 50% 0% 50% 50%;
+    float: left;
+}
+
+.skillName {
+    width: 71.79px;
+    height: 27.09px;
+    margin: 0 auto;
+    margin-top: 24.05px;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #828282;
+}
+
+.skillLevel {
+    margin-top: 40.16px;
+    margin-bottom: 111px;
+    font-size: 0;
+}
+
+.skillLevelStar {
+    width: 26.63px;
+    height: 25.84px;
+    line-height: 25.84px;
+    display: inline-block;
+    margin: 0 4.61px;
+    vertical-align: middle;
+}
+
+.portfolio {
+    width: 1445px;
+    height: 2163px;
+    padding-top: 90px;
+    background: #F6F6F6;
+}
+
+.portfolioHeader {
+    width: 280px;
+    height: 43px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 34px;
+    line-height: 40px;
+    color: #070707;
+}
+
+.portfolioItem {
+    width: 940px;
+    margin: 0 auto;
+    margin-top: 90px;
+}
+
+.portfolioItemImage {
+    width: 940px;
+    height: 510px;
+}
+
+.portfolioItemText {
+    width: 276px;
+    height: 24px;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-size: 18px;
+    line-height: 21px;
+    text-decoration: underline;
+    text-align: center;
+    color: #070707;
+}
+
+.contacts {
+    width: 1445px;
+    background: #FFFFFF;
+    text-align: center;
+    font-size: 0;
+}
+
+.contactsHeader {
+    width: 160px;
+    height: 44px;
+    margin: 0 auto;
+    margin-top: 90px;
+    text-align: center;
+    font-size: 34px;
+    line-height: 40px;
+    color: #070707;
+}
+
+.contactsText {
+    width: 280px;
+    height: 44px;
+    margin: 0 auto;
+    margin-top: 48px;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #070707;
+}
+
+.contactsButton {
+    width: 180px;
+    height: 42px;
+    margin: 0 auto;
+    margin-top: 60px;
+    font-size: 18px;
+    line-height: 42px;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFFFFF;
+    border-radius: 21px 21px 21px 21px;
+    background: #070707;
+    transition: all 0.2s ease 0s;
+}
+
+.contactsButton:hover {
+    background: #828282;
+}
+
+.contactsSocial {
+    margin-top: 90.84px;
+    padding-bottom: 164px;
+}
+
+.contactsSocialIcon {
+    width: 38.86px;
+    height: 39.1px;
+    margin: 0 30px;
+    margin-top: 90.84px;
+    padding-bottom: 164px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.contacts a {
+    text-decoration: none;
+}

@@ -1,0 +1,250 @@
+<!-- Viseven test task by Vadym Sobolevskyi -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Denzel Washington</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <!--     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+ -->
+    <script type="text/javascript" charset="utf-8">
+
+        function clearMenuItemSelection() { //  Make all top menu items grey
+            var menuItems = Array.prototype.slice.call(document.querySelectorAll('.menuItem'), 0);
+            menuItems.forEach(function (item) {
+                item.classList.remove('menuItemSelected');
+            });
+        }
+
+        function scrollSmooth(sectionReference) {   // Smooth scroll to section by reference
+            var speed = 70;
+            if (document.documentMode || /Edge/.test(navigator.userAgent)) { // Make scroll speed slower for IE11 and Edge
+                speed = 15;
+            }
+            var windowPos = window.pageYOffset;
+            var section = sectionReference.getAttribute('href').slice(1);
+            var elemOffset = document.getElementById(section).offsetTop + 1;
+
+            var counter = setInterval(function () {
+                if (windowPos > elemOffset) { // from bottom to top
+                    window.scrollTo(0, windowPos);
+                    windowPos -= speed;
+
+                    if (windowPos <= elemOffset) { // scrolling until elemOffset is higher than scrollbar position, cancel interval and set scrollbar to element position
+                        clearInterval(counter);
+                        window.scrollTo(0, elemOffset);
+                    }
+                }
+                else { // from top to bottom
+                    window.scrollTo(0, windowPos);
+                    windowPos += speed;
+
+                    if (windowPos >= elemOffset) { // scroll until scrollbar is lower than element, cancel interval and set scrollbar to element position
+                        clearInterval(counter);
+                        window.scrollTo(0, elemOffset);
+                    }
+                }
+            }, 1);
+        }
+
+        window.onload = function (e) {   // Scroll top on page reload
+            window.scroll(0, 0);
+        };
+
+        window.addEventListener("scroll", function () { // Select top menu item according to current scrolling position
+            clearMenuItemSelection();
+            var YOffset = window.pageYOffset;
+
+            var XOffset = window.pageXOffset;
+            if (XOffset > 0) { // Scroll fixed menu with page content
+                document.querySelector('.topNavigation').style.left = -XOffset + 'px';
+            }
+            else {
+                document.querySelector('.topNavigation').style.left = 'auto';
+            }
+
+            if ((YOffset >= document.getElementById("header").offsetTop)
+                && (YOffset < (document.getElementById("header").offsetTop + document.getElementById("header").offsetHeight))) {
+                document.getElementById("menu0").classList.add('menuItemSelected');
+            }
+            else if ((YOffset >= document.getElementById("aboutMe").offsetTop)
+                && (YOffset < (document.getElementById("aboutMe").offsetTop + document.getElementById("aboutMe").offsetHeight))) {
+                document.getElementById("menu1").classList.add('menuItemSelected');
+            }
+            else if ((YOffset >= document.getElementById("skills").offsetTop)
+                && (YOffset < (document.getElementById("skills").offsetTop + document.getElementById("skills").offsetHeight))) {
+                document.getElementById("menu2").classList.add('menuItemSelected');
+            }
+            else if ((YOffset >= document.getElementById("portfolio").offsetTop)
+                && (YOffset < (document.getElementById("portfolio").offsetTop + document.getElementById("portfolio").offsetHeight))) {
+                document.getElementById("menu3").classList.add('menuItemSelected');
+            }
+
+            if ((YOffset + window.innerHeight) >= (document.getElementById("contacts").offsetTop + document.getElementById("contacts").offsetHeight) - 90) {
+                clearMenuItemSelection();
+                document.getElementById("menu4").classList.add('menuItemSelected');
+            }
+        }, false);
+
+    </script>
+
+</head>
+
+<body>
+    <main class="mainPage">
+        <nav class="topNavigation">
+            <div class="menu">
+                <a id="menu0" href="#header" class="menuItem menuItemSelected" onclick="scrollSmooth(this)"
+                    style="margin-left:0px;">Home</a>
+                <a id="menu1" href="#aboutMe" class="menuItem" onclick="scrollSmooth(this)"
+                    style="margin-left:125px;">About me</a>
+                <a id="menu2" href="#skills" class="menuItem" onclick="scrollSmooth(this)">Skills</a>
+                <a id="menu3" href="#portfolio" class="menuItem" onclick="scrollSmooth(this)"
+                    style="text-align:center;">Portfolio</a>
+                <a id="menu4" href="#contacts" class="menuItem" onclick="scrollSmooth(this)"
+                    style="margin-right:-20px;">Contacts</a>
+
+                <div class="navLine"></div>
+            </div>
+        </nav>
+
+        <section id="header" class="header">
+            <div class="headerName">Denzel Washington</div>
+            <div class="headerDescription">UX | UI designer from Krakozia 30 years old</div>
+            <img class="headerImage" src="img/header.jpg">
+        </section>
+
+        <section id="aboutMe" class="aboutMe">
+            <div class="aboutMeHeader">About me</div>
+            <div class="aboutMeText">Hi, I'm Denzel – UX/UI designer from Krakozia.
+                <br>I'm interested in design and everything connected with it.
+                <br>
+                <br>
+                <br>I'm studying at courses "Web and mobile design
+                <br>interfaces" in IT-Academy.
+                <br>
+                <br>
+                <br>Ready to implement excellent projects
+                <br>with wonderful people.
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="skillsHeader">Skills</div>
+            <div class="skillsText">I work in such programs as</div>
+            <div class="skillDescription">
+                <div class="skillIcon"><img src="img/skillIconPhotoshop.png"></div>
+                <div class="skillName">Adobe Photoshop</div>
+                <div class="skillLevel">
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarGrey.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="skillDescription">
+                <div class="skillIcon"><img src="img/skillIconAdobeIllustrator.png"></div>
+                <div class="skillName">Adobe Illustrator</div>
+                <div class="skillLevel">
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarGrey.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarGrey.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="skillDescription">
+                <div class="skillIcon"><img src="img/skillIconAdobeAfterEffects .png"></div>
+                <div class="skillName" style="width:116px;">Adobe After Effects</div>
+                <div class="skillLevel">
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarGrey.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="skillDescription">
+                <div class="skillIcon" style="width: 59.48px; background: none;">
+                    <div class="skillIconFigma1"></div>
+                    <div class="skillIconFigma2"></div>
+                    <div class="skillIconFigma3"></div>
+                    <div class="skillIconFigma4"></div>
+                    <div class="skillIconFigma5"></div>
+                </div>
+                <div class="skillName">Figma</div>
+                <div class="skillLevel">
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarBlack.jpg">
+                    </div>
+                    <div class="skillLevelStar"><img style="vertical-align:middle;" src="./img/skillLevelStarGrey.jpg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio">
+            <div class="portfolioHeader">Portfolio</div>
+            <div class="portfolioItem">
+                <a href=""><img class="portfolioItemImage" src="img/portfolioItemImage1.jpg"
+                        alt="Online fashion store - Homepage"></a>
+                <a href="">
+                    <div class="portfolioItemText">Online fashion store - Homepage</div>
+                </a>
+            </div>
+            <div class="portfolioItem">
+                <a href=""><img class="portfolioItemImage" src="img/portfolioItemImage2.jpg"
+                        alt="Reebok Store - Concept"></a>
+                <a href="">
+                    <div class="portfolioItemText">Reebok Store - Concept</div>
+                </a>
+            </div>
+            <div class="portfolioItem">
+                <a href=""><img class="portfolioItemImage" src="img/portfolioItemImage3.jpg"
+                        alt="Braun Landing Page - Concept"></a>
+                <a href="">
+                    <div class="portfolioItemText">Braun Landing Page - Concept</div>
+                </a>
+            </div>
+        </section>
+
+        <footer id="contacts" class="contacts">
+            <div class="contactsHeader">Contacts</div>
+            <div class="contactsText">Want to know more or just chat? You are welcome!</div>
+            <a href="">
+                <div class="contactsButton">Send message</div>
+            </a>
+            <a href=""><img class="contactsSocialIcon" src="img/contactsSocialIcon1.jpg"></a>
+            <a href=""><img class="contactsSocialIcon" src="img/contactsSocialIcon2.jpg"></a>
+            <a href=""><img class="contactsSocialIcon" src="img/contactsSocialIcon3.jpg"></a>
+            <a href=""><img class="contactsSocialIcon" src="img/contactsSocialIcon4.jpg"></a>
+        </footer>
+    </main>
+
+</body>
+
+</html>

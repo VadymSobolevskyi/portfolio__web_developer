@@ -1,0 +1,237 @@
+<!-- Viseven TASK1 by Vadym Sobolevskyi -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TASK1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <style media="screen, print">
+        @font-face {
+            font-family: 'Roboto-Regular';
+            src: url('./fonts/Roboto-Regular.ttf');
+            src: url('./fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+                url('./fonts/Roboto-Regular.woff2') format('woff2'),
+                url('./fonts/Roboto-Regular.woff') format('woff'),
+                url('./fonts/Roboto-Regular.ttf') format('truetype'),
+                url('./fonts/Roboto-Regular.svg#svgFontName') format('svg');
+        }
+
+        @font-face {
+            font-family: 'Roboto-Medium';
+            src: url('./fonts/Roboto-Medium.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Myriad-Pro';
+            src: url('./fonts/Myriad-Pro-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Helvetica-Neue';
+            src: url('./fonts/Helvetica-Neue.ttf') format('truetype');
+        }
+
+        html,
+        body {
+            font-family: "Roboto-Regular", serif;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-stroke: 0.45px;
+            -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
+            text-shadow: #fff 0px 1px 1px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header id="top">
+        <div class="header">
+            <div class="header-logo">
+                <a href="#"><img src="./img/logo.jpg" alt="logo"></a>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#"><span>HOME</span></a></li>
+                    <li><a href="./articles.html"><span>ARTICLES</span></a></li>
+                    <li>
+                        <a href="#" style="color: #ffffff;">
+                            <span style="border-color: #ffffff;">
+                                VIDEOS
+                            </span>
+                        </a>
+                        <ul class="dropdown-videos">
+                            <li class="dropdown-videos-header">
+                                <a href="#">VIDEOS</a>
+                                <img src="./img/drop-down-arrow.png" class="dropdown-videos-arrow" alt="v">
+                            </li>
+                            <li class="dropdown-videos-item"><a href="#">Most Recent</a></li>
+                            <li class="dropdown-videos-item"><a href="#">Most Popular</a></li>
+                            <li class="dropdown-videos-item"><a href="#">All</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span>CONTACT US</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="header-sign-in-up">
+                    <a href="#">Sign In</a><span>&nbsp;&#47;&nbsp;</span><a href="#">Sign Up</a>
+                </div>
+
+            <div class="header-search">
+                <input type="checkbox" id="search-trigger" class="search-trigger" />
+                <label for="search-trigger"></label>
+                <div class="search-input">
+                    <img src="./img/search-icon.png" alt="search">
+                    <input type="search" placeholder="Search">
+                </div>
+            </div>
+
+            <nav class="burger-nav">
+                <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+                <label for="nav-trigger"></label>
+                <ul>
+                    <li><a href="#"><span>HOME</span></a></li>
+                    <li><a href="./articles.html"><span>ARTICLES</span></a></li>
+                    <li><a href="#"><span>VIDEOS</span></a></li>
+                    <li><a href="#"><span>CONTACT US</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <article id="content">
+        <h2>&nbsp;</h2>
+        <section class="featured-video">
+            <h2>&nbsp;</h2>
+            <figure>
+                <img src="./img/videos/featured-video.jpg" alt="Legends of Tomorrow" class="featured-video-img-desktop">
+                <img src="./img/videos/featured-video-tablet.jpg" alt="Legends of Tomorrow"
+                    class="featured-video-img-tablet">
+                <img src="./img/videos/featured-video-phone.jpg" alt="Legends of Tomorrow"
+                    class="featured-video-img-phone">
+                <figcaption>
+                    <div class="featured-video-title">
+                        Watch the Trailers for Legends of Tomorrow
+                        <br> and Other New CW Shows
+                    </div>
+                    <div class="featured-video-title-tablet">
+                        Watch the Trailers for Legends of Tomorrow
+                        and Other New CW Shows
+                    </div>
+                    <div class="featured-video-reference">
+                        tvguide.com
+                    </div>
+                    <div class="play-button"></div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="video-content">
+            <h2>&nbsp;</h2>
+            <figure class="video-item">
+                <img src="./img/videos/video-1.jpg" alt="The Supergirl Trailer is Here">
+                <img src="./img/videos/video-1-tablet.jpg" alt="The Supergirl Trailer is Here">
+                <img src="./img/videos/video-1-phone.jpg" alt="The Supergirl Trailer is Here">
+                <figcaption>
+                    <div class="video-title">
+                        The Supergirl Trailer is Here
+                    </div>
+                    <div class="video-reference">
+                        ign.com
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="video-item">
+                <img src="./img/videos/video-2.jpg" alt="Mad Max: Fury Road">
+                <img src="./img/videos/video-2-tablet.jpg" alt="Mad Max: Fury Road">
+                <img src="./img/videos/video-2-phone.jpg" alt="Mad Max: Fury Road">
+                <figcaption>
+                    <div class="video-title">
+                        Mad Max: Fury Road
+                    </div>
+                    <div class="video-reference">
+                        nytimes.com
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="video-item">
+                <img src="./img/videos/video-3.jpg" alt="Elephants Have a Secret Language">
+                <img src="./img/videos/video-3-tablet.jpg" alt="Elephants Have a Secret Language">
+                <figcaption>
+                    <div class="video-title">
+                        Elephants Have a Secret Language
+                    </div>
+                    <div class="video-reference">
+                        cnn.com
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="video-item">
+                <img src="./img/videos/video-4.jpg" alt="Mariah Carey -- Diva Does Disneyland">
+                <img src="./img/videos/video-4-tablet.jpg" alt="Mariah Carey -- Diva Does Disneyland">
+                <figcaption>
+                    <div class="video-title">
+                        Mariah Carey -- Diva Does Disneyland
+                    </div>
+                    <div class="video-title-tablet">
+                        Mariah Carey -- Diva Does Disney...
+                    </div> 
+                    <div class="video-reference">
+                        tmz.com
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="video-item">
+                <img src="./img/videos/video-5.jpg" alt="Cleveland's Elephant in the Room">
+                <figcaption>
+                    <div class="video-title">
+                        Cleveland's Elephant in the Room
+                    </div>
+                    <div class="video-reference">
+                        espn.com
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="video-item">
+                <img src="./img/videos/video-6.jpg" alt="Miss Piggy Gets Feminist Award">
+                <figcaption>
+                    <div class="video-title">
+                        Miss Piggy Gets Feminist Award
+                    </div>
+                    <div class="video-reference">
+                        usatoday.com
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+    </article>
+
+    <footer id="bottom">
+        <div class="footer">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Articles</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-copyright">&#169; 2015. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

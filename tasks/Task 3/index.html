@@ -1,0 +1,336 @@
+<!-- Viseven TASK3 by Vadym Sobolevskyi -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 3</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+</head>
+
+<body>
+    <article class="main">
+        <h2>&nbsp;</h2>
+
+        <header>
+            WELCOME TO VISEVEN <span>IMAGESTOCK</span>
+        </header>
+
+        <section class=image-container>
+            <!--             <figure class="image-item">
+                <img src="./gallery/image1.jpg" alt="">
+                <figcaption>
+                    <img src=".img/comment_icon.png" class="image-comment">
+                    <img src=".img/like_icon.png" class="image-like">
+                    <img src=".img/dislike_icon.png" class="image-dislike">
+                </figcaption>
+            </figure>
+
+            <figure class="image-item-8">
+                <img src="img/image8.jpg" alt="">
+            </figure>  -->
+
+            <figure class="add-item">
+                <form enctype="multipart/form-data">
+                    <input id="add-file" type="file" name="picture" accept=".jpg, .jpeg, .png"
+                        onchange="handleFiles()" />
+                    <label for="add-file">
+                        <div class="add-picture">
+                            <img src="./img/add_picture2.png">
+                            <div class="add-picture-text">
+                                Add your Picture
+                            </div>
+                        </div>
+                    </label>
+
+                </form>
+
+            </figure>
+
+        </section>
+
+        <div class="overlay">
+            <div class="popup">
+                <figure class="popup-image">
+                    <img src="./gallery/image1.jpg" alt="">
+                    <figcaption></figcaption>
+                    <div class="like-button">
+                        <img src="./img/like_icon.png">
+                        <span id="popupLikesCount"></span>
+                    </div>
+                    <div class="dislike-button">
+                        <img src="./img/dislike_icon.png">
+                        <span id="popupDislikesCount"></span>
+                    </div>
+
+                </figure>
+                <a class="close" href="#"><img src="./img/close_icon.png"></a>
+                <article class="content">
+                    <header>Comments: <span id="popupCommentsCount"></span></header>
+                    <section class="comments">
+
+                        <article class="comment">
+                            <header>
+                                <div class="author">By Anon93</div>
+                                <div class="date">Today 10:21 PM</div>
+                                <div class="text">
+                                    Nullam viverra leo eget urna maximus,
+                                    et pellentesque enim volutpat.
+                                </div>
+                            </header>
+                            <section>
+
+                            </section>
+                        </article>
+
+                        <article class="comment">
+                            <header>
+                                <div class="author">By Anon93</div>
+                                <div class="date">Today 10:21 PM</div>
+                                <div class="text">
+                                    Nullam viverra leo eget urna maximus,
+                                    et pellentesque enim volutpat.
+                                </div>
+                            </header>
+                            <section>
+
+                            </section>
+                        </article>
+
+                    </section>
+                    <footer>
+                        <div class="new-comment-divider"></div>
+                        <form enctype="multipart/form-data">
+                            <input name="nickname" type="text" placeholder="Type your nickname here..."
+                                class="new-comment-nickname">
+                            <textarea id="comment" type="text" name="comment" placeholder="Write your comment here..." rows="2" cols="30" class="new-comment-comment"></textarea>
+                            <input id="submit" type="image" src="./img/send_icon.png" alt="submit" class="new-comment-submit">
+                        </form>
+                    </footer>
+                </article>
+            </div>
+        </div>
+
+    </article>
+
+    <script>
+        /*grid layout*/
+        const imgRow1 = '03212311233',
+            imgCol1 = '01112234445',
+            imgRow2 = '04323432344',
+            imgCol2 = '02233445556';
+
+        sessionStorage.setItem('imageCount', 0);
+        sessionStorage.setItem('templateIndex', 1);
+        sessionStorage.setItem('pageCount', 1);
+        sessionStorage.setItem('nextImageId', 1);
+
+        const imageObject = {
+            id: 0,
+            name: '',
+            src: './',
+            likes: 0,
+            dislikes: 0,
+            comments: []
+        };
+
+        function addImage(imageName) {
+            let pgCount = Number(sessionStorage.getItem('pageCount'));
+            let imgCount = Number(sessionStorage.getItem('imageCount'));
+            let tmpltIndex = Number(sessionStorage.getItem('templateIndex'));
+            let imageId = Number(sessionStorage.getItem('nextImageId'));
+
+
+            let addItem = document.querySelector(".add-item");
+            /*
+            addItem.style.gridColumn = String(Number(imgCol1[tmpltIndex]) + (4*(pgCount - 1)));
+            addItem.style.gridRow = imgRow1[tmpltIndex];
+*/
+            addItem.style.gridArea = imgRow1[tmpltIndex + 1] + ' / '
+                + String(Number(imgCol1[tmpltIndex + 1]) + (4 * (pgCount - 1))) + ' / '
+                + imgRow2[tmpltIndex + 1] + ' / '
+                + String(Number(imgCol2[tmpltIndex + 1]) + (4 * (pgCount - 1)));
+
+            let gridWidth = pgCount * 5;
+            document.querySelector(".image-container").style.gridTemplateColumns = 'repeat(' + gridWidth + ', 236px)';
+
+
+
+            let imageContainer = document.querySelector(".image-container");
+            addItem = document.querySelector(".add-item");
+
+            let imageItem = document.createElement("figure");
+            imageItem.setAttribute("id", imageId);
+            imageItem.className = 'image-item';
+            imageItem.style.gridArea = imgRow1[tmpltIndex] + ' / '
+                + String(Number(imgCol1[tmpltIndex]) + (4 * (pgCount - 1))) + ' / '
+                + imgRow2[tmpltIndex] + ' / '
+                + String(Number(imgCol2[tmpltIndex]) + (4 * (pgCount - 1)));
+
+
+
+            let image = document.createElement("img");
+            image.src = "./gallery/" + imageName;
+            image.alt = "";
+
+            let imageInfo = document.createElement("figcaption");
+
+
+            let imageInfoComments = document.createElement("div");
+            imageInfoComments.className = "image-comment";
+
+            let imageInfoCommentsIcon = document.createElement("img");
+            imageInfoCommentsIcon.src = "./img/comment_icon.png";
+
+            let imageInfoCommentsCount = document.createElement("span");
+            imageInfoCommentsCount.className = "image-comment-count";
+
+
+            let imageInfoLikes = document.createElement("div");
+            imageInfoLikes.className = "image-like";
+
+            let imageInfoLikesIcon = document.createElement("img");
+            imageInfoLikesIcon.src = "./img/like_icon.png";
+
+            let imageInfoLikesCount = document.createElement("span");
+            imageInfoLikesCount.className = "image-like-count";
+
+
+            let imageInfoDislikes = document.createElement("div");
+            imageInfoDislikes.className = "image-dislike";
+
+            let imageInfoDislikesIcon = document.createElement("img");
+            imageInfoDislikesIcon.src = "./img/dislike_icon.png";
+
+            let imageInfoDislikesCount = document.createElement("span");
+            imageInfoDislikesCount.className = "image-dislike-count";
+
+
+            imageInfo.appendChild(imageInfoComments);
+            imageInfoComments.appendChild(imageInfoCommentsIcon);
+            imageInfoComments.appendChild(imageInfoCommentsCount);
+
+            imageInfo.appendChild(imageInfoLikes);
+            imageInfoLikes.appendChild(imageInfoLikesIcon);
+            imageInfoLikes.appendChild(imageInfoLikesCount);
+
+            imageInfo.appendChild(imageInfoDislikes);
+            imageInfoDislikes.appendChild(imageInfoDislikesIcon);
+            imageInfoDislikes.appendChild(imageInfoDislikesCount);
+
+
+            imageItem.appendChild(image);
+            imageItem.appendChild(imageInfo);
+
+            imageContainer.insertBefore(imageItem, addItem);
+
+
+            sessionStorage.setItem('imageCount', imgCount + 1);
+            sessionStorage.setItem('nextImageId', imageId + 1);
+
+            if (tmpltIndex < 9) {
+                sessionStorage.setItem('templateIndex', tmpltIndex + 1);
+            }
+            else {
+                sessionStorage.setItem('templateIndex', 1);
+                sessionStorage.setItem('pageCount', pgCount + 1);
+            }
+
+            const img = Object.create(imageObject);
+            img.id = imageId;
+            img.name = imageName;
+            img.src = "./gallery/" + imageName;
+            img.likes = 0;
+            img.dislikes = 0;
+            img.comments = [];
+
+            let storageItemName = 'image_' + imageId;
+            sessionStorage.setItem(storageItemName, JSON.stringify(img));
+
+            imageInfoCommentsCount.innerHTML = img.comments.length;
+            imageInfoLikesCount.innerHTML = img.likes;
+            imageInfoDislikesCount.innerHTML = img.dislikes;
+
+            //            alert(sessionStorage.getItem(storageItemName));
+
+        }
+
+
+        function handleFiles() {
+            let fileName = document.getElementById("add-file").files[0].name;
+            addImage(fileName);
+        }
+
+
+        // Page initialisation
+        window.addEventListener('load', function () {
+
+            for (let i = 1; i < 9; i++) {
+                let imgName = "image" + i + ".jpg";
+                addImage(imgName);
+            }
+
+            let images = document.querySelectorAll(".image-item");
+            let popupImageObject = null;
+            let popupImageItem = null;
+
+            for (let i = 0; i < images.length; i++) {
+                images[i].addEventListener('click', function () {
+                    let imagePath = document.getElementById(this.id).firstChild.src;
+                    document.querySelector(".popup-image").firstElementChild.src = "./" + imagePath.substring(imagePath.indexOf('gallery'));
+                    popupImageItem = 'image_' + String(this.id);
+  //                  console.log(popupImageItem);
+
+                    popupImageObject = JSON.parse(sessionStorage.getItem(popupImageItem));
+//                    console.log(popupImageObject);
+
+                    document.getElementById("popupLikesCount").innerHTML = popupImageObject.likes;
+                    document.getElementById("popupDislikesCount").innerHTML = popupImageObject.dislikes;
+                    document.getElementById("popupCommentsCount").innerHTML = popupImageObject.comments.length;
+
+                    document.querySelector(".overlay").style.visibility = "visible";
+                    document.querySelector(".overlay").style.opacity = "1";
+                })
+
+
+
+                images[i].addEventListener('mouseover', function () {
+                    let hoverImageItem = 'image_' + String(this.id);
+                    let hoverImageObject = JSON.parse(sessionStorage.getItem(hoverImageItem));
+                    this.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling.innerHTML = hoverImageObject.likes;
+                    this.firstChild.nextSibling.firstChild.nextSibling.nextSibling.firstChild.nextSibling.innerHTML = hoverImageObject.dislikes;
+                })
+            }
+
+            document.querySelector(".like-button").addEventListener('click', function () {
+                popupImageObject.likes++;
+//                console.log(popupImageObject.likes);
+                document.getElementById("popupLikesCount").innerHTML = popupImageObject.likes;
+                sessionStorage.setItem(popupImageItem, JSON.stringify(popupImageObject));
+  //              console.log(popupImageObject);
+            })
+
+            document.querySelector(".dislike-button").addEventListener('click', function () {
+                popupImageObject.dislikes++;
+                document.getElementById("popupDislikesCount").innerHTML = popupImageObject.dislikes;
+                sessionStorage.setItem(popupImageItem, JSON.stringify(popupImageObject));
+            })
+
+
+
+            document.querySelector(".close").addEventListener('click', function () {
+                document.querySelector(".overlay").style.visibility = "hidden";
+                document.querySelector(".overlay").style.opacity = "0";
+
+            })
+
+        })
+
+    </script>
+
+</body>
+
+</html>
