@@ -39,6 +39,9 @@ body {
   width: 70%;
   margin: 0 auto;
   background: #f0f3f6;
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(201, 199, 201, 1);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(201, 199, 201, 1);
+  box-shadow: 0px 2px 10px 0px rgba(201, 199, 201, 1);
 }
 
 .main > h2 {
@@ -63,6 +66,14 @@ body {
   text-align: center;
   font-family: OpenSans-Bold, sans-serif;
   font-size: 14px;
+  font-style: normal;
+  color: #8499a7;
+}
+
+.css-animation-instruction {
+  text-align: center;
+  font-family: OpenSans-Bold, sans-serif;
+  font-size: 12px;
   font-style: normal;
   color: #8499a7;
 }
@@ -94,14 +105,23 @@ body {
 
 /* PHONE 320-500 */
 @media screen and (max-width: 500px) {
+  .main {
+    width: 95%;
+  }
 }
 
 /* TABLET 501 - 768 */
 @media (min-width: 501px) and (max-width: 768px) {
+  .main {
+    width: 90%;
+  }
 }
 
 /* DESKTOP 769 - 1920 */
 @media (min-width: 769px) and (max-width: 1920px) {
+  .main {
+    width: 85%;
+  }
 }
 
 /* DESKTOP+ 1921+ */
